@@ -2,7 +2,7 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m eternity
 
-ENV DIGIBYTE_DATA=/home/eternity/.eternity
+ENV ETERNITY_DATA=/home/eternity/.eternity
 
 USER eternity
 
@@ -17,7 +17,7 @@ RUN cd /home/eternity && \
     ./configure LDFLAGS="-L/home/eternity/db4/lib/" CPPFLAGS="-I/home/eternity/db4/include/" && \
     make 
     
-EXPOSE 12024 14022
+EXPOSE 5844 5845
 
 #VOLUME ["/home/eternity/.eternity"]
 
