@@ -1,0 +1,9 @@
+---
+daemon:
+#  build: .
+  image: quay.io/kwiksand/eternityd:latest
+  ports:
+   - "5854:5854"
+   - "5855:5855"
+  volumes:
+   - /media/crypto/eternity:/home/eternity/.eternity
