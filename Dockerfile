@@ -26,8 +26,8 @@ USER root
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && cp /home/eternity/eternityd/src/eternity-cli /usr/bin/eternity-cli && chmod 755 /usr/bin/eternity-cli && \
-RUN chmod 777 /entrypoint.sh && cp /home/eternity/eternityd/src/eternity-tx /usr/bin/eternity-tx && chmod 755 /usr/bin/eternity-tx && \
-RUN chmod 777 /entrypoint.sh && cp /home/eternity/eternityd/src/eternityd /usr/bin/eternityd && chmod 755 /usr/bin/eternityd
+    chmod 777 /entrypoint.sh && cp /home/eternity/eternityd/src/eternity-tx /usr/bin/eternity-tx && chmod 755 /usr/bin/eternity-tx && \
+    chmod 777 /entrypoint.sh && cp /home/eternity/eternityd/src/eternityd /usr/bin/eternityd && chmod 755 /usr/bin/eternityd
 
 ENTRYPOINT ["/entrypoint.sh"]
 
