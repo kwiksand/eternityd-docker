@@ -1,28 +1,39 @@
-#!/bin/sh
+#!/bin/bash
+
 set -e
 ETERNITY_DATA=/home/eternity/.eternity
-cd /home/eternity/eternityd
+CONFIG_FILE=eternity.conf
+EXEC_CM=eternityd
 
-if [ $(echo "$1" | cut -c1) = "-" ]; then
-  echo "$0: assuming arguments for eternityd"
+if [ -z $1 ] || [ "$1" == "eternityd" ] || [ $(echo "$1" | cut -c1) == "-" ]; then
+  cmd=eternityd
+  shift
 
-  set -- eternityd "$@"
-fi
+  if [ ! -d $ETERNITY_DATA ]; then
+    echo "$0: DATA DIR ($ETERNITY_DATA) not found, please create and add config.  exiting...."
+    exit 1
+  fi
 
-if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "eternityd" ]; then
-  mkdir -p "$ETERNITY_DATA"
+  if [ ! -f $ETERNITY_DATA/$CONFIG_FILE ]; then
+    echo "$0: eternityd config ($ETERNITY_DATA/$CONFIG_FILE) not found, please create.  exiting...."
+    exit 1
+  fi
+
   chmod 700 "$ETERNITY_DATA"
   chown -R eternity "$ETERNITY_DATA"
 
-  echo "$0: setting data directory to $ETERNITY_DATA"
+  if [ $(echo "$1" | cut -c1) == "-" ]; then
+    echo "$0: assuming arguments for eternityd"
 
-  set -- "$@" -datadir="$ETERNITY_DATA"
-fi
+    set -- $cmd "$@" -datadir="$ETERNITY_DATA"
+  else
+    set -- $cmd -datadir="$ETERNITY_DATA"
+  fi
 
-if [ "$1" = "eternityd" ] || [ "$1" = "eternity-cli" ] || [ "$1" = "eternity-tx" ]; then
-  echo
   exec gosu eternity "$@"
-fi
+elif [ "$1" == "eternity-cli" ] || [ "$1" == "eternity-tx" ]; then
 
-echo
-exec "$@"
+  exec gosu eternity "$@"
+else
+  echo "This entrypoint will only execute eternityd, eternity-cli and eternity-tx"
+fi
