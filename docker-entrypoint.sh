@@ -22,7 +22,7 @@ if [ -z $1 ] || [ "$1" == "eternityd" ] || [ $(echo "$1" | cut -c1) == "-" ]; th
   chmod 700 "$ETERNITY_DATA"
   chown -R eternity "$ETERNITY_DATA"
 
-  if [ $(echo "$1" | cut -c1) == "-" ]; then
+  if [ -z $1 ] || [ $(echo "$1" | cut -c1) == "-" ]; then
     echo "$0: assuming arguments for eternityd"
 
     set -- $cmd "$@" -datadir="$ETERNITY_DATA"
