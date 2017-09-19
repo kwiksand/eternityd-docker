@@ -9,7 +9,7 @@ USER eternity
 
 RUN cd /home/eternity && \
     mkdir /home/eternity/bin && \
-    echo -en "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" > /home/eternity/.bashrc && \
+    echo "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" >> /home/eternity/.bashrc && \
     mkdir .ssh && \
     chmod 700 .ssh && \
     ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && \
@@ -34,7 +34,7 @@ USER root
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
-    echo -en "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" > /root/.bashrc && \
+    echo "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" >> /root/.bashrc && \
     chmod 755 /home/eternity/bin/eternityd && \
     chmod 755 /home/eternity/bin/eternity-cli && \
     chmod 755 /home/eternity/bin/eternity-tx && \
