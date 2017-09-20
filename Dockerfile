@@ -25,7 +25,7 @@ RUN cd /home/eternity && \
     mv src/eternityd src/eternity-cli src/eternity-tx /home/eternity/bin && \
     rm -rf /home/eternity/eternityd
     
-EXPOSE 5844 5845
+EXPOSE 4854 4855
 
 #VOLUME ["/home/eternity/.eternity"]
 
@@ -33,7 +33,6 @@ USER root
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-<<<<<<< HEAD
 RUN chmod 777 /entrypoint.sh && \
     echo "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" >> /root/.bashrc && \
     chmod 755 /home/eternity/bin/eternityd && \
