@@ -33,7 +33,7 @@ USER root
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
-    echo "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" >> /etc/bashrc && \
+    echo "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" >> /etc/bash.bashrc && \
     chmod 755 /home/eternity/bin/eternityd && \
     chmod 755 /home/eternity/bin/eternity-cli && \
     chmod 755 /home/eternity/bin/eternity-tx && \
