@@ -2,7 +2,12 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m eternity
 
-ENV DAEMON_RELEASE="v0.12.1.5"
+ENV DAEMON_RELEASE="v0.12.1.6"
+ENV E_COIN_CURRENCY="eternity"
+ENV E_COIN_SYMBOL="ENT"
+ENV E_COIN_DAEMON="/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf"
+ENV E_GET_BLOCKCOUNT='/usr/bin/curl -s https://chainz.cryptoid.info/ent/api.dws?q=getblockcount'
+ENV E_MASTERNODE_CONF="eternitynode"
 ENV ETERNITY_DATA=/home/eternity/.eternity
 
 USER eternity
@@ -40,6 +45,8 @@ RUN chmod 777 /entrypoint.sh && \
     mv /home/eternity/bin/eternityd /usr/bin/eternityd && \
     mv /home/eternity/bin/eternity-cli /usr/bin/eternity-cli && \
     mv /home/eternity/bin/eternity-tx /usr/bin/eternity-tx 
+
+COPY node-status.sh /usr/bin/node-status
 
 ENTRYPOINT ["/entrypoint.sh"]
 
