@@ -39,6 +39,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
     echo "\n# Some aliases to make the eternity clients/tools easier to access\nalias eternityd='/usr/bin/eternityd -conf=/home/eternity/.eternity/eternity.conf'\nalias eternity-cli='/usr/bin/eternity-cli -conf=/home/eternity/.eternity/eternity.conf'\n" >> /etc/bash.bashrc && \
+    echo "Eternity (ENT) Cryptocoin Daemon\n\nUsage:\n eternity-cli help - List help options\n eternity-cli listtransactions - List Transactions\n\n" > /etc/motd && \
     chmod 755 /home/eternity/bin/eternityd && \
     chmod 755 /home/eternity/bin/eternity-cli && \
     chmod 755 /home/eternity/bin/eternity-tx && \
