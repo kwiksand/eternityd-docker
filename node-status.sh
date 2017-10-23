@@ -104,7 +104,7 @@ function colour_scale () {
   fi
 }
 
-if [ ! -z $get_blockcount_cmd ]  && [ "$get_blockcount_cmd" != "" ]; then
+if [ "$get_blockcount_cmd" != "" ]; then
     block_count=$($get_blockcount_cmd)
 fi
 
